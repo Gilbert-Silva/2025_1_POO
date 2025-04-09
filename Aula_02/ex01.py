@@ -1,0 +1,5 @@
+print("Informe seu nome")
+nome = input()
+print("Informe sua idade")
+idade = int(input())
+print(f"Olá {nome}! Você tem {idade} anos")

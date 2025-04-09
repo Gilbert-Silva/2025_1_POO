@@ -1,0 +1,15 @@
+/workspaces/2025_1_POO/Aula_02/Ex01/bin/Debug/net8.0/Ex01
+/workspaces/2025_1_POO/Aula_02/Ex01/bin/Debug/net8.0/Ex01.deps.json
+/workspaces/2025_1_POO/Aula_02/Ex01/bin/Debug/net8.0/Ex01.runtimeconfig.json
+/workspaces/2025_1_POO/Aula_02/Ex01/bin/Debug/net8.0/Ex01.dll
+/workspaces/2025_1_POO/Aula_02/Ex01/bin/Debug/net8.0/Ex01.pdb
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.AssemblyInfoInputs.cache
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.AssemblyInfo.cs
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.csproj.CoreCompileInputs.cache
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.sourcelink.json
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.dll
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/refint/Ex01.dll
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.pdb
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/Ex01.genruntimeconfig.cache
+/workspaces/2025_1_POO/Aula_02/Ex01/obj/Debug/net8.0/ref/Ex01.dll
