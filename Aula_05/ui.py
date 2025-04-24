@@ -5,7 +5,7 @@ import circulo
 class UI:
     @staticmethod
     def menu():
-        print("Selecione a figura: 1-Triângulo, 2-Retângulo 3-Círculo, 9-Fim")
+        print("Selecione a figura: 1-Triângulo, 2-Retângulo, 3-Círculo, 9-Fim")
         return int(input())
 
     @staticmethod
