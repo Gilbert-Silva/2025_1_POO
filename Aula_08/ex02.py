@@ -18,7 +18,7 @@ class Pessoa:
 
 p = Pessoa("João", 30)
 
-#print(p.idade)       # 30  (chama o getter)
-#p.idade = 35         # chama o setter
-#print(p.idade)       # 35
+print(p.idade)       # 30  (chama o getter)
+p.idade = 35         # chama o setter
+print(p.idade)       # 35
 # p.idade = -5       # ValueError: Idade não pode ser negativa
