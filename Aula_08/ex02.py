@@ -1,7 +1,8 @@
 class Pessoa:
     def __init__(self, nome, idade):
+        if type(idade) != int: raise TypeError("Idade deve ser um inteiro") 
         self.nome = nome
-        self.idade = idade  
+        self.idade = idade 
 
     @property
     def idade(self):
@@ -22,3 +23,5 @@ print(p.idade)       # 30  (chama o getter)
 p.idade = 35         # chama o setter
 print(p.idade)       # 35
 # p.idade = -5       # ValueError: Idade não pode ser negativa
+
+x = Pessoa("João", "30")
