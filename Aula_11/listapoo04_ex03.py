@@ -53,25 +53,60 @@ class Cliente:
             s += f", seu sócio é {self.__socio.__nome}" 
             return s
 
+class UI:
+    @staticmethod
+    def menu():
+        return int(input("Menu: 1-Criar Empresa, 2-Inserir cliente, 3-Listar clientes, 4-Definir sociedade, 9-Fim: "))
 
-x = Empresa("IFRN")
-print(x)
-c1 = Cliente("Eduardo", 1000)
-c2 = Cliente("Lucas", 2000)
-c3 = Cliente("Julia", 1500)
-c4 = Cliente("Daniele", 2500)
-c1.set_socio(c2)  # self -> c1    c -> c2
-c3.set_socio(c4)
-#c2.set_socio(c1)
-x.inserir(c1)
-x.inserir(c2)
-x.inserir(c3)
-x.inserir(c4)
+    @staticmethod
+    def main():
+        op = 0
+        x = None
+        while op != 9:
+            op = UI.menu()
+            if op == 1: x = UI.criar_empresa()
+            if op == 2: 
+                if x == None: print("Crie uma empresa antes!")
+                else: UI.inserir_cliente(x)
+            if op == 3: 
+                if x == None: print("Crie uma empresa antes!")
+                else: UI.listar_clientes(x)
+            if op == 4:    
+                if x == None: print("Crie uma empresa antes!")
+                else: UI.definir_sociedade(x)
 
-print(x)
-for c in x.listar(): print(" ", c)
+    @staticmethod
+    def criar_empresa(): # método da classe
+        nome = input("Informe o nome da empresa: ")
+        x = Empresa(nome)
+        return x
 
-c1.set_socio(c3)
-for c in x.listar(): print(" ", c)
+    @staticmethod
+    def inserir_cliente(x): # método da classe
+        nome = input("Informe o nome do cliente: ")
+        limite = float(input("Informe o limite: "))
+        cliente = Cliente(nome, limite)
+        x.inserir(cliente)
+
+    @staticmethod
+    def listar_clientes(x): # método da classe
+        print(x)
+        for cliente in x.listar():
+            print("  ", cliente)
+
+    @staticmethod
+    def definir_sociedade(x): # método da classe
+        print(x)
+        n = 0
+        clientes = x.listar()
+        for cliente in clientes:
+            print(n, "-", cliente)
+            n += 1
+        a = int(input("Informe o nº do 1º cliente: ")) 
+        b = int(input("Informe o nº do 2º cliente: ")) 
+        clientes[a].set_socio(clientes[b])
+
+UI.main()    
+
 
 
