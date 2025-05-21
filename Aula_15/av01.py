@@ -6,6 +6,7 @@ class Contrato:
         self.set_ddd(ddd)
         self.set_numero(numero)
         self.set_valor(valor)
+        # self.__cliente = None
 
     def set_plano(self, plano):
         if plano == "": raise ValueError("Plano não pode ser vazio")
@@ -63,10 +64,11 @@ class Cliente:
     def __str__(self):
         return f"{self.__nome} cadastrado em {self.__data_cadastro.strftime("%d/%m/%Y")} tem {len(self.__contratos)} contrato(s)"    
 
+c = Cliente("Alex", datetime(2024, 3, 1))
 
 x = Contrato("5GB", 11, "987654321", 100)
 y = Contrato("15GB", 84, "987654321", 150)
-c = Cliente("Alex", datetime(2024, 3, 1))
+
 c.inserir(x)
 c.inserir(y)
 print(c)
