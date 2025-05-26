@@ -17,6 +17,10 @@ class Clientes:    # Persistência - Armazena os objetos em um arquivo/banco de 
     @classmethod
     def inserir(cls, obj):
         cls.abrir()
+        m = 0
+        for x in cls.objetos:
+            if x.id > m: m = x.id
+        obj.id = m + 1    
         cls.objetos.append(obj)
         cls.salvar() 
 
@@ -24,7 +28,29 @@ class Clientes:    # Persistência - Armazena os objetos em um arquivo/banco de 
     def listar(cls):
         cls.abrir()
         return cls.objetos
+
+    @classmethod
+    def listar_id(cls, id):
+        cls.abrir()
+        for obj in cls.objetos:
+            if obj.id == id: return obj
+        return None            
     
+    @classmethod
+    def atualizar(cls, obj):
+        x = cls.listar_id(obj.id)
+        if x != None: 
+            cls.objetos.remove(x)
+            cls.objetos.append(obj)
+            cls.salvar()
+
+    @classmethod
+    def excluir(cls, obj):
+        x = cls.listar_id(obj.id)
+        if x != None: 
+            cls.objetos.remove(x)
+            cls.salvar()
+
     @classmethod
     def abrir(cls):
         cls.objetos = []    
@@ -53,18 +79,37 @@ class UI:  # Visão/Apresentação - Não tem instância
             op = UI.menu()
             if op == 1: UI.cliente_inserir() # clientes)
             if op == 2: UI.cliente_listar() # clientes)
+            if op == 3: UI.cliente_atualizar()
+            if op == 4: UI.cliente_excluir()
 
     @staticmethod
-    def cliente_inserir(): # clientes):
-        id = int(input("Informe o id do cliente: "))
+    def cliente_inserir(): # C - create
+        # id = int(input("Informe o id do cliente: "))
         nome = input("Informe o nome: ")
         email = input("Informe o e-mail: ")
         fone = input("Informe o fone: ")
-        c = Cliente(id, nome, email, fone)
+        c = Cliente(0, nome, email, fone)
         Clientes.inserir(c)
 
-    @staticmethod
-    def cliente_listar(): # clientes):
+    @staticmethod # R - read
+    def cliente_listar(): 
         for c in Clientes.listar(): print(c)
+
+    @staticmethod # U - update
+    def cliente_atualizar(): 
+        UI.cliente_listar()
+        id = int(input("Informe o id do cliente a ser atualizado: "))
+        nome = input("Informe o novo nome: ")
+        email = input("Informe o novo e-mail: ")
+        fone = input("Informe o novo fone: ")        
+        c = Cliente(id, nome, email, fone)
+        Clientes.atualizar(c)
+
+    @staticmethod # D - delete
+    def cliente_excluir(): 
+        UI.cliente_listar()
+        id = int(input("Informe o id do cliente a ser excluído: "))
+        c = Cliente(id, "", "", "")
+        Clientes.excluir(c)
 
 UI.main()            
