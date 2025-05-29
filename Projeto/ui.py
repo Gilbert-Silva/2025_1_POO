@@ -1,8 +1,10 @@
 from cliente import Cliente, Clientes
 from categoria import Categoria, Categorias
 from produto import Produto, Produtos
+from venda import Venda, Vendas
 
 class UI:  # Visão/Apresentação - Não tem instância
+    carrinho = None   # atributo de classe
     @staticmethod
     def menu():
         print("|------------------------------------------------|")
@@ -14,6 +16,11 @@ class UI:  # Visão/Apresentação - Não tem instância
         print("|------------------------------------------------|")
         print("| Cadastro de Produtos                           |")
         print("| 9-Inserir, 10-Listar, 11-Atualizar, 12-Excluir |")
+        print("|------------------------------------------------|")
+        print("| 13-Iniciar um carrinho de compra               |")
+        print("| 14-Listar as compras                           |")
+        print("| 15-Inserir produto no carrinho                 |")
+        print("| 16-Confirmar a compra                          |")
         print("|------------------------------------------------|")
         print("| 99-FIM                                         |")
         print("|------------------------------------------------|")
@@ -42,6 +49,25 @@ class UI:  # Visão/Apresentação - Não tem instância
             if op == 10: UI.produto_listar()
             if op == 11: UI.produto_atualizar()
             if op == 12: UI.produto_excluir()
+
+            if op == 13: UI.venda_inserir()
+            if op == 14: UI.venda_listar()
+            if op == 15: UI.vendaitem_inserir()
+
+    # Operações de Venda
+    @classmethod
+    def venda_inserir(cls): # C - create
+        v = Venda(0)
+        Vendas.inserir(v)
+        cls.carrinho = v
+
+    @staticmethod # R - read
+    def venda_listar(): 
+        for v in Vendas.listar(): print(v)
+
+    @classmethod 
+    def vendaitem_inserir(cls): 
+        print("O produto vai ser inserido nesse carrinho: ", cls.carrinho)
 
     # CRUD de Clientes
     @staticmethod
