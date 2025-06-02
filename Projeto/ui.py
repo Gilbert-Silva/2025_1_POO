@@ -2,6 +2,7 @@ from cliente import Cliente, Clientes
 from categoria import Categoria, Categorias
 from produto import Produto, Produtos
 from venda import Venda, Vendas
+from vendaitem import VendaItem, VendaItens
 
 class UI:  # Visão/Apresentação - Não tem instância
     carrinho = None   # atributo de classe
@@ -19,8 +20,9 @@ class UI:  # Visão/Apresentação - Não tem instância
         print("|------------------------------------------------|")
         print("| 13-Iniciar um carrinho de compra               |")
         print("| 14-Listar as compras                           |")
-        print("| 15-Inserir produto no carrinho                 |")
-        print("| 16-Confirmar a compra                          |")
+        print("| 15-Visualizar carrinho                         |")
+        print("| 16-Inserir produto no carrinho                 |")
+        print("| 17-Confirmar a compra                          |")
         print("|------------------------------------------------|")
         print("| 99-FIM                                         |")
         print("|------------------------------------------------|")
@@ -52,7 +54,10 @@ class UI:  # Visão/Apresentação - Não tem instância
 
             if op == 13: UI.venda_inserir()
             if op == 14: UI.venda_listar()
-            if op == 15: UI.vendaitem_inserir()
+            if op == 15: UI.visualizar_carrinho()
+            if op == 16: UI.inserir_produto_no_carrinho()
+            if op == 17: UI.confirmar_compra()
+
 
     # Operações de Venda
     @classmethod
@@ -63,11 +68,49 @@ class UI:  # Visão/Apresentação - Não tem instância
 
     @staticmethod # R - read
     def venda_listar(): 
-        for v in Vendas.listar(): print(v)
+        for v in Vendas.listar(): 
+            print(v)
+            for item in VendaItens.listar():
+                if item.id_venda == v.id:
+                    id_produto = item.id_produto
+                    descricao = Produtos.listar_id(id_produto).descricao
+                    print(f"  {descricao} - Qtd: {item.qtd} - R$ {item.preco:.2f}")
+
 
     @classmethod 
-    def vendaitem_inserir(cls): 
-        print("O produto vai ser inserido nesse carrinho: ", cls.carrinho)
+    def visualizar_carrinho(cls): 
+        if cls.carrinho == None:
+            print("Você precisa criar um carrinho primeiro!")
+            return
+        print("Este é seu carrinho atual: ", cls.carrinho)
+        for item in VendaItens.listar():
+            if item.id_venda == cls.carrinho.id:
+                id_produto = item.id_produto
+                descricao = Produtos.listar_id(id_produto).descricao
+                print(f"  {descricao} - Qtd: {item.qtd} - R$ {item.preco:.2f}")
+
+    @classmethod 
+    def inserir_produto_no_carrinho(cls):
+        UI.produto_listar()
+        id_produto = int(input("Informe o id do produto: "))
+        qtd = int(input("Informe a qtd: "))
+        preco = Produtos.listar_id(id_produto).preco
+        vi = VendaItem(0, qtd, preco)
+        vi.id_venda = cls.carrinho.id
+        vi.id_produto = id_produto
+        VendaItens.inserir(vi)
+        # Atualizar o total da venda (carrinho)
+        subtotal = qtd * preco
+        cls.carrinho.total += subtotal
+        Vendas.salvar()
+
+    @classmethod 
+    def confirmar_compra(cls): 
+        pass
+        # dever de casa
+        # Na venda (carrinho), colocar o atributo carrinho para False
+        # Percorrer os itens da venda (vendaitem-qtd) e baixar o estoque no
+        # cadastro de produto (produto-estoque)
 
     # CRUD de Clientes
     @staticmethod

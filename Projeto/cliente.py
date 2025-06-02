@@ -15,8 +15,10 @@ class Clientes:    # Persistência - Armazena os objetos em um arquivo/banco de 
     def inserir(cls, obj):
         cls.abrir()
         m = 0
-        for x in cls.objetos:
-            if x.id > m: m = x.id
+        if len(cls.objetos) > 0:
+            m = max(cls.objetos, key=lambda c: c.id).id
+        #for x in cls.objetos:
+        #    if x.id > m: m = x.id
         obj.id = m + 1    
         cls.objetos.append(obj)
         cls.salvar() 
