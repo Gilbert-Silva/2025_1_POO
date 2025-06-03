@@ -91,18 +91,22 @@ class UI:  # Visão/Apresentação - Não tem instância
 
     @classmethod 
     def inserir_produto_no_carrinho(cls):
+        # Listar os produtos disponíveis
         UI.produto_listar()
         id_produto = int(input("Informe o id do produto: "))
         qtd = int(input("Informe a qtd: "))
+        # Consultar preço do produto
         preco = Produtos.listar_id(id_produto).preco
+        # Instanciar o item da venda
         vi = VendaItem(0, qtd, preco)
         vi.id_venda = cls.carrinho.id
         vi.id_produto = id_produto
+        # Inserir o item da venda
         VendaItens.inserir(vi)
         # Atualizar o total da venda (carrinho)
         subtotal = qtd * preco
         cls.carrinho.total += subtotal
-        Vendas.salvar()
+        Vendas.atualizar(cls.carrinho)
 
     @classmethod 
     def confirmar_compra(cls): 
