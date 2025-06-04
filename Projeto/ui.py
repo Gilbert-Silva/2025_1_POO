@@ -91,6 +91,9 @@ class UI:  # Visão/Apresentação - Não tem instância
 
     @classmethod 
     def inserir_produto_no_carrinho(cls):
+        if cls.carrinho == None:
+            print("Você precisa criar um carrinho primeiro!")
+            return
         # Listar os produtos disponíveis
         UI.produto_listar()
         id_produto = int(input("Informe o id do produto: "))
@@ -110,11 +113,21 @@ class UI:  # Visão/Apresentação - Não tem instância
 
     @classmethod 
     def confirmar_compra(cls): 
-        pass
-        # dever de casa
+        if cls.carrinho == None:
+            print("Você precisa criar um carrinho primeiro!")
+            return
         # Na venda (carrinho), colocar o atributo carrinho para False
+        cls.carrinho.carrinho = False
+        Vendas.atualizar(cls.carrinho)
         # Percorrer os itens da venda (vendaitem-qtd) e baixar o estoque no
         # cadastro de produto (produto-estoque)
+        for item in VendaItens.listar():
+            if item.id_venda == cls.carrinho.id:
+                id_produto = item.id_produto
+                qtd = item.qtd
+                produto = Produtos.listar_id(id_produto)
+                produto.estoque -= qtd
+                Produtos.atualizar(produto)
 
     # CRUD de Clientes
     @staticmethod

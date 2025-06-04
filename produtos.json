@@ -1,1 +1,1 @@
-[{"id": 1, "descricao": "Mouse Logitech", "preco": 75.0, "estoque": 10, "id_categoria": 1}, {"id": 2, "descricao": "Mouse Microsoft", "preco": 100.0, "estoque": 10, "id_categoria": 1}]
+[{"id": 2, "descricao": "Mouse Microsoft", "preco": 100.0, "estoque": 9, "id_categoria": 1}, {"id": 1, "descricao": "Mouse Logitech", "preco": 75.0, "estoque": 7, "id_categoria": 1}]
