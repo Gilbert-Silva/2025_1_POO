@@ -4,8 +4,11 @@ from produto import Produto, Produtos
 from venda import Venda, Vendas
 from vendaitem import VendaItem, VendaItens
 
-
 class View:
+    def cadastrar_admin():
+        for cliente in Clientes.listar():
+            if cliente.email == "admin" : return
+        View.cliente_inserir("admin", "admin", "1234")        
     def cliente_inserir(nome, email, fone):
         c = Cliente(0, nome, email, fone)
         Clientes.inserir(c)

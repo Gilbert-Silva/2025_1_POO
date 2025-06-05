@@ -34,7 +34,8 @@ class UI:  # Visão/Apresentação - Não tem instância
         return op
 
     @staticmethod
-    def main():    
+    def main(): 
+        View.cadastrar_admin()  
         op = 0
         # clientes = []
         while op != 99:
