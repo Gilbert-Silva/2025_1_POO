@@ -1,8 +1,10 @@
-from cliente import Cliente, Clientes
+#from cliente import Cliente, Clientes
 from categoria import Categoria, Categorias
 from produto import Produto, Produtos
 from venda import Venda, Vendas
 from vendaitem import VendaItem, VendaItens
+
+from views import View
 
 class UI:  # Visão/Apresentação - Não tem instância
     carrinho = None   # atributo de classe
@@ -94,10 +96,15 @@ class UI:  # Visão/Apresentação - Não tem instância
         if cls.carrinho == None:
             print("Você precisa criar um carrinho primeiro!")
             return
+        
         # Listar os produtos disponíveis
         UI.produto_listar()
         id_produto = int(input("Informe o id do produto: "))
         qtd = int(input("Informe a qtd: "))
+
+        # inserir o produto no carrinho
+        View.inserir_produto_no_carrinho(cls.carrinho.id, id_produto, qtd)
+        """
         # Consultar preço do produto
         preco = Produtos.listar_id(id_produto).preco
         # Instanciar o item da venda
@@ -110,7 +117,7 @@ class UI:  # Visão/Apresentação - Não tem instância
         subtotal = qtd * preco
         cls.carrinho.total += subtotal
         Vendas.atualizar(cls.carrinho)
-
+        """
     @classmethod 
     def confirmar_compra(cls): 
         if cls.carrinho == None:
@@ -136,11 +143,13 @@ class UI:  # Visão/Apresentação - Não tem instância
         nome = input("Informe o nome: ")
         email = input("Informe o e-mail: ")
         fone = input("Informe o fone: ")
-        c = Cliente(0, nome, email, fone)
-        Clientes.inserir(c)
+        #c = Cliente(0, nome, email, fone)
+        #Clientes.inserir(c)
+        View.cliente_inserir(nome, email, fone)
     @staticmethod # R - read
     def cliente_listar(): 
-        for c in Clientes.listar(): print(c)
+        #for c in Clientes.listar(): print(c)
+        for c in View.cliente_listar(): print(c)
     @staticmethod # U - update
     def cliente_atualizar(): 
         UI.cliente_listar()
@@ -148,14 +157,16 @@ class UI:  # Visão/Apresentação - Não tem instância
         nome = input("Informe o novo nome: ")
         email = input("Informe o novo e-mail: ")
         fone = input("Informe o novo fone: ")        
-        c = Cliente(id, nome, email, fone)
-        Clientes.atualizar(c)
+        #c = Cliente(id, nome, email, fone)
+        #Clientes.atualizar(c)
+        View.cliente_atualizar(id, nome, email, fone)
     @staticmethod # D - delete
     def cliente_excluir(): 
         UI.cliente_listar()
         id = int(input("Informe o id do cliente a ser excluído: "))
-        c = Cliente(id, "", "", "")
-        Clientes.excluir(c)
+        #c = Cliente(id, "", "", "")
+        #Clientes.excluir(c)
+        View.cliente_excluir(id)
 
     # CRUD de Categorias
     @staticmethod

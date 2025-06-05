@@ -1,0 +1,36 @@
+from cliente import Cliente, Clientes
+from categoria import Categoria, Categorias
+from produto import Produto, Produtos
+from venda import Venda, Vendas
+from vendaitem import VendaItem, VendaItens
+
+
+class View:
+    def cliente_inserir(nome, email, fone):
+        c = Cliente(0, nome, email, fone)
+        Clientes.inserir(c)
+    def cliente_listar():
+       return Clientes.listar()
+    def cliente_atualizar(id, nome, email, fone):
+        c = Cliente(id, nome, email, fone)
+        Clientes.atualizar(c)
+    def cliente_excluir(id):
+        c = Cliente(id, "", "", "")
+        Clientes.excluir(c)
+
+    def inserir_produto_no_carrinho(id_carrinho, id_produto, qtd):
+        # Consultar preço do produto
+        preco = Produtos.listar_id(id_produto).preco
+        # Instanciar o item da venda
+        vi = VendaItem(0, qtd, preco)
+        vi.id_venda = id_carrinho
+        vi.id_produto = id_produto
+        # Inserir o item da venda
+        VendaItens.inserir(vi)
+        # Atualizar o total da venda (carrinho)
+        carrinho = Vendas.listar_id(id_carrinho)
+        subtotal = qtd * preco
+        carrinho.total += subtotal
+        Vendas.atualizar(carrinho)
+
+      
