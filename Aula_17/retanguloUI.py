@@ -1,5 +1,5 @@
 import streamlit as st
-from retangulo import Retangulo
+from Aula_17.retangulo import Retangulo
 
 class RetanguloUI:
     def main():
@@ -12,3 +12,4 @@ class RetanguloUI:
             st.write(f"Área = {r.calc_area()}")
             st.write(f"Diagonal = {r.calc_diagonal()}")
 
+#RetanguloUI.main()

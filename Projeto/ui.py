@@ -1,8 +1,8 @@
 #from cliente import Cliente, Clientes
-from categoria import Categoria, Categorias
-from produto import Produto, Produtos
-from venda import Venda, Vendas
-from vendaitem import VendaItem, VendaItens
+from models.categoria import Categoria, Categorias
+from models.produto import Produto, Produtos
+from models.venda import Venda, Vendas
+from models.vendaitem import VendaItem, VendaItens
 
 from views import View
 

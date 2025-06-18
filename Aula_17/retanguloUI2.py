@@ -1,4 +1,4 @@
-from retangulo import Retangulo
+from Aula_17.retangulo import Retangulo
 
 class RetanguloUI2:
     def main():
