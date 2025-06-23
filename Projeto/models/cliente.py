@@ -1,11 +1,12 @@
 import json
 
 class Cliente:   # Domínio - Entidades - Várias instâncias
-    def __init__(self, id, nome, email, fone):
+    def __init__(self, id, nome, email, fone, senha):
         self.id = id       # atributo da instância
         self.nome = nome
         self.email = email
         self.fone = fone
+        self.senha = senha
     def __str__(self):
         return f"{self.id} - {self.nome} - {self.email} - {self.fone}"
     
@@ -52,7 +53,7 @@ class Clientes:    # Persistência - Armazena os objetos em um arquivo/banco de 
             with open("clientes.json", mode="r") as arquivo:
                 s = json.load(arquivo)
                 for dic in s: 
-                    obj = Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"])
+                    obj = Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"], dic["senha"])
                     cls.objetos.append(obj)
         except FileNotFoundError:
             pass            

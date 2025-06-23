@@ -16,9 +16,12 @@ class ManterClienteUI:
         if len(clientes) == 0: 
             st.write("Nenhum cliente cadastrado")
         else:    
-            dic = []
-            for obj in clientes: dic.append(obj.__dict__)
-            df = pd.DataFrame(dic)
+            list_dic = []
+            for obj in clientes:
+                dic_cliente = obj.__dict__  
+                del dic_cliente["senha"] 
+                list_dic.append(dic_cliente)
+            df = pd.DataFrame(list_dic)
             st.dataframe(df)
     def inserir():
         nome = st.text_input("Informe o nome: ")
