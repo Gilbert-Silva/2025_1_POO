@@ -28,7 +28,8 @@ class ManterClienteUI:
         email = st.text_input("Informe o e-mail: ")
         fone = st.text_input("Informe o fone: ")
         if st.button("Cadastrar"):
-            View.cliente_inserir(nome, email, fone)
+            # usuário é cadastrado com senha padrão
+            View.cliente_inserir(nome, email, fone, "1234")
             st.success("Cliente inserido com sucesso")
             time.sleep(2)
             st.rerun()
