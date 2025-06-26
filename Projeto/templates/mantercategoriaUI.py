@@ -12,7 +12,16 @@ class ManterCategoriaUI:
         with tab3: ManterCategoriaUI.atualizar()
         with tab4: ManterCategoriaUI.excluir()
     def listar():
-        pass
+        categorias = View.categoria_listar()
+        if len(categorias) == 0: 
+            st.write("Nenhuma categoria cadastrada")
+        else:    
+            list_dic = []
+            for obj in categorias:
+                dic = obj.__dict__ 
+                list_dic.append(dic)
+            df = pd.DataFrame(list_dic)
+            st.dataframe(df)
     def inserir():
         pass
     def atualizar():

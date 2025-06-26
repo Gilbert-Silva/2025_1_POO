@@ -26,6 +26,9 @@ class View:
         c = Cliente(id, "texto", "texto", "", "")
         Clientes.excluir(c)
 
+    def categoria_listar():
+       return Categorias.listar()
+
     def inserir_produto_no_carrinho(id_carrinho, id_produto, qtd):
         # Consultar preço do produto
         preco = Produtos.listar_id(id_produto).preco
