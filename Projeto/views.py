@@ -31,7 +31,8 @@ class View:
             if v.id_cliente == id_cliente and v.carrinho:
                 return v.id
         # insere um carrinho novo
-        v = Vendas.inserir()
+        v = Venda(0)
+        Vendas.inserir(0)
         v.id_cliente = id_cliente
         return v.id
 
