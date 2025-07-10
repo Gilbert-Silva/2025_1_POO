@@ -13,5 +13,7 @@ class LoginUI:
             else:    
                 st.session_state["cliente_id"] = c["id"]
                 st.session_state["cliente_nome"] = c["nome"]
+                venda_id = View.cliente_iniciar_carrinho(c["id"])
+                st.session_state["venda_id"] = venda_id
                 st.rerun()
                

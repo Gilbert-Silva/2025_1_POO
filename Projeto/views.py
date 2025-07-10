@@ -25,6 +25,17 @@ class View:
     def cliente_excluir(id):
         c = Cliente(id, "texto", "texto", "", "")
         Clientes.excluir(c)
+    def cliente_iniciar_carrinho(id_cliente):   
+        # procura um carrinho para o cliente
+        for v in Vendas.listar():
+            if v.id_cliente == id_cliente and v.carrinho:
+                return v.id
+        # insere um carrinho novo
+        v = Vendas.inserir()
+        v.id_cliente = id_cliente
+        return v.id
+
+
 
     def categoria_listar():
        return Categorias.listar()
