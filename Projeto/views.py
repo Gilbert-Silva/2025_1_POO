@@ -32,7 +32,7 @@ class View:
                 return v.id
         # insere um carrinho novo
         v = Venda(0)
-        Vendas.inserir(0)
+        Vendas.inserir(v)
         v.id_cliente = id_cliente
         return v.id
 
